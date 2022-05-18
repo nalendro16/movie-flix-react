@@ -1,11 +1,11 @@
 import React from 'react'
 
-export const Movie = () => {
+export const Movie = ({ title }) => {
   return (
     <div>
-      <h2>Movie</h2>
+      <h2>{title}</h2>
       <div>
-          <img src="" alt="" className='img-poster'/>
+        <img src='' alt='' className='img-poster' />
       </div>
     </div>
   )

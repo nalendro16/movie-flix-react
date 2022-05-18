@@ -5,7 +5,7 @@ import { Movie } from './components'
 function App() {
   return (
     <div className='App'>
-      <Movie />
+      <Movie title='Netflix Original' />
     </div>
   )
 }

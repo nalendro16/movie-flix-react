@@ -1,19 +1,16 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 
-import { Movie } from './components'
-import API from './request.js'
+import { Movie } from './page'
 
 function App() {
   return (
     <div className='App'>
-      <Movie title='Netflix Original' url={API.fetchNetflixOriginals} />
-      {/* <Movie title='Trending Now' url={API.fetchTrending} />
-      <Movie title='Top Rated' url={API.fetchTopRated} />
-      <Movie title='Action Movie' url={API.fetchActionMovie} />
-      <Movie title='Comedy Movie' url={API.fetchCommedyMovie} />
-      <Movie title='Horror Movie' url={API.fetchHorrorMovie} />
-      <Movie title='Romance Movie' url={API.fetchRomanceMovie} />
-      <Movie title='Documentaries Movie' url={API.fetchDocumentariesMovie} /> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Movie />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }

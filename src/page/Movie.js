@@ -21,18 +21,20 @@ export const Movie = () => {
   console.log(movie)
 
   return (
-    <div className='w-full h-screen my-4'>
+    <div className='w-full my-4'>
       <p className='font-bold text-left ml-4 mb-4'>Trending Movie</p>
-      <div className='w-full flex gap-1 h-screen m-4 max-w-screen overflow-x-scroll'>
+      <div className='w-full flex gap-1 m-4 max-w-screen overflow-x-scroll content-snap'>
         {movie &&
-          movie.map((item) => (
-            <MovieCard
-              poster={item.poster_path}
-              image_url={image_url}
-              id={item.id}
-              key={item.id}
-            />
-          ))}
+          movie
+            .map((item) => (
+              <MovieCard
+                poster={item.poster_path}
+                image_url={image_url}
+                id={item.id}
+                key={item.id}
+              />
+            ))
+            .splice(1, 10)}
       </div>
     </div>
   )

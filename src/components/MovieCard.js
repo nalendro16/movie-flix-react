@@ -1,16 +1,9 @@
 import React from 'react'
 
-const image_url = 'https://image.tmdb.org/t/p/original'
-
-export const MovieCard = ({ poster, name, id }) => {
+export const MovieCard = ({ poster, name, id, image_url }) => {
   return (
-    <div className='w-1/6 flex flex-col'>
-      <p className='font-semibold text-xs'>{name}</p>
-      <img
-        src={image_url + poster}
-        alt='placeholder poster'
-        className='w-3/4'
-      />
+    <div className='w-4/5 h-fit flex flex-col bg-yellow-100 hover:w-5/6 transition-transform'>
+      <img src={image_url + poster} alt='placeholder poster' className='w-80' />
     </div>
   )
 }

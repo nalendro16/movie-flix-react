@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { image } from '../assets'
 import axios from '../axios'
 import { MovieCard } from '../components/MovieCard'
 import API from '../request'
@@ -8,6 +9,7 @@ const url = API.fetchTrending
 
 export const Movie = () => {
   const [movie, setMovie] = useState([])
+  const container = useRef(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,23 +20,44 @@ export const Movie = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  console.log(movie)
+  console.log(container)
+
+  const handleClickLeft = () => {
+    container.current.scrollLeft += 250
+  }
+
+  const handleClickRight = () => {
+    container.current.scrollLeft -= 250
+  }
 
   return (
-    <div className='w-full my-4'>
+    <div className='w-screen my-4'>
       <p className='font-bold text-left ml-4 mb-4'>Trending Movie</p>
-      <div className='w-full flex gap-1 m-4 max-w-screen overflow-x-scroll content-snap'>
+      <div
+        ref={container}
+        className='h-56 overflow-x-auto flex gap-3 before:shrink-0 before:w-[5vw] after:shrink-0 after:w-[5vw] container-snap scroll-touch scroll-smooth'
+      >
         {movie &&
-          movie
-            .map((item) => (
-              <MovieCard
-                poster={item.poster_path}
-                image_url={image_url}
-                id={item.id}
-                key={item.id}
-              />
-            ))
-            .splice(1, 10)}
+          movie.map((item) => (
+            <MovieCard
+              poster={item.poster_path}
+              image_url={image_url}
+              id={item.id}
+              key={item.id}
+            />
+          ))}
+      </div>
+      <div
+        className='h-48 w-16 absolute right-0 top-14 flex items-center hover:bg-black opacity-75'
+        onClick={handleClickRight}
+      >
+        <img src={image.icon_right} alt='Kanan' className='w-8 h-8' />
+      </div>
+      <div
+        className='h-48 w-16 absolute leftt-0 top-14 flex items-center hover:bg-black opacity-75'
+        onClick={handleClickLeft}
+      >
+        <img src={image.icon_left} alt='' className='w-8 h-8' />
       </div>
     </div>
   )

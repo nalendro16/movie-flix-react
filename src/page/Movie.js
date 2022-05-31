@@ -1,30 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { image } from '../assets'
-import axios from '../axios'
 import { MovieCard } from '../components/MovieCard'
+import { useFetch } from '../hooks/useFetch'
 import API from '../request'
 
 const image_url = 'https://image.tmdb.org/t/p/original'
 const url = API.fetchTrending
 
 export const Movie = () => {
-  const [movie, setMovie] = useState([])
-  const [loading, setLoading] = useState(true)
   const container = useRef(null)
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true)
-      const request = await axios.get(url)
-      if (request.status === 200) {
-        setMovie(request?.data?.results)
-        setLoading(false)
-      }
-    }
-    fetchData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const { movieData, loading } = useFetch({ url })
 
+  console.log(movieData && movieData)
   const handleClickLeft = () => {
     container.current.scrollLeft += 250
   }
@@ -40,8 +28,8 @@ export const Movie = () => {
         ref={container}
         className='h-56 overflow-x-auto flex gap-3 before:shrink-0 before:w-[5vw] after:shrink-0 after:w-[5vw] container-snap scroll-touch scroll-smooth'
       >
-        {movie &&
-          movie.map((item) => (
+        {movieData &&
+          movieData.map((item) => (
             <MovieCard
               loading={loading}
               poster={item.poster_path}

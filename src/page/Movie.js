@@ -9,18 +9,21 @@ const url = API.fetchTrending
 
 export const Movie = () => {
   const [movie, setMovie] = useState([])
+  const [loading, setLoading] = useState(true)
   const container = useRef(null)
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true)
       const request = await axios.get(url)
-      setMovie(request?.data?.results)
+      if (request.status === 200) {
+        setMovie(request?.data?.results)
+        setLoading(false)
+      }
     }
     fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  console.log(container)
 
   const handleClickLeft = () => {
     container.current.scrollLeft += 250
@@ -40,6 +43,7 @@ export const Movie = () => {
         {movie &&
           movie.map((item) => (
             <MovieCard
+              loading={loading}
               poster={item.poster_path}
               image_url={image_url}
               id={item.id}

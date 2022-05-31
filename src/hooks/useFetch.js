@@ -1,5 +1,5 @@
 import axios from '../axios'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useFetch = ({ url }) => {
   const [movieData, setMovieData] = useState([])
@@ -10,10 +10,10 @@ export const useFetch = ({ url }) => {
     const fetchData = async () => {
       setLoading(true)
       const request = await axios.get(url)
-      //   if (request.status === 200) {
-      setMovieData(request?.data?.results)
-      setLoading(false)
-      //   }
+      if (request.status === 200) {
+        setMovieData(request?.data?.results)
+        setLoading(false)
+      }
       console.log(axios.get(url))
     }
     fetchData()

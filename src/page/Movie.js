@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { image } from '../assets'
 import { MovieCard } from '../components/MovieCard'
 import { useFetch } from '../hooks/useFetch'
-import API from '../request'
+import API from '../hooks/utils/request'
 
 const image_url = 'https://image.tmdb.org/t/p/original'
 const url = API.fetchTrending

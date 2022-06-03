@@ -12,7 +12,6 @@ export const Movie = () => {
 
   const { movieData, loading } = useFetch({ url })
 
-  console.log(movieData && movieData)
   const handleClickLeft = () => {
     container.current.scrollLeft += 250
   }

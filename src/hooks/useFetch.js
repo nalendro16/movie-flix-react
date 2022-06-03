@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 export const useFetch = ({ url }) => {
   const [movieData, setMovieData] = useState([])
   const [loading, setLoading] = useState(true)
-  console.log(url)
 
   useEffect(() => {
     const fetchData = async () => {

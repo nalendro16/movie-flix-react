@@ -19,6 +19,7 @@ export const Movie = () => {
   const handleClickRight = () => {
     container.current.scrollLeft -= 250
   }
+  console.log(loading)
 
   return (
     <div className='w-screen my-4'>

@@ -13,7 +13,6 @@ export const useFetch = ({ url }) => {
         setMovieData(request?.data?.results)
         setLoading(false)
       }
-      console.log(axios.get(url))
     }
     fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps

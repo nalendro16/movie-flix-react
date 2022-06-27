@@ -19,10 +19,7 @@ export const MovieList = ({ url }) => {
 
   return (
     <div>
-      <div
-        ref={container}
-        className='h-56 overflow-x-auto flex flex-row gap-3 before:shrink-0 before:w-[5vw] after:shrink-0 after:w-[5vw] container-snap scroll-touch scroll-smooth'
-      >
+      <div ref={container} className='flex'>
         {movieData.map((item) => (
           <MovieCard
             // loading={loading}
@@ -34,7 +31,7 @@ export const MovieList = ({ url }) => {
         ))}
       </div>
 
-      <div
+      {/* <div
         className='h-48 w-16 absolute right-0 top-14 flex items-center hover:bg-black opacity-75'
         onClick={handleClickRight}
       >
@@ -45,7 +42,7 @@ export const MovieList = ({ url }) => {
         onClick={handleClickLeft}
       >
         <img src={image.icon_left} alt='' className='w-8 h-8' />
-      </div>
+      </div> */}
     </div>
   )
 }
